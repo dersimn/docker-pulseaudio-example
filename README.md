@@ -84,8 +84,8 @@ load-module module-native-protocol-tcp port=4713 auth-anonymous=1
 
 Linux:
 
-    docker run -e "DOCKER_HOST=$(ip -4 addr show docker0 | grep -Po 'inet \K[\d.]+')" pulse
     docker run -e "DOCKER_HOST=<IP of the docker0 network interface>" pulse
+    docker run -e "DOCKER_HOST=$(ip -4 addr show docker0 | grep -Po 'inet \K[\d.]+')" pulse
 
 macOS (using *Docker for Mac*):
 
@@ -96,3 +96,6 @@ macOS (using *Docker for Mac*):
 
 - Testfile from <https://www.kozco.com/tech/soundtests.html>
 - [Docker PulseAudio Example](https://github.com/TheBiggerGuy/docker-pulseaudio-example)
+
+[]: https://devops.datenkollektiv.de/running-a-docker-soundbox-on-mac.html
+[]: https://www.smb-tec.com/blog/goodbye-siri-hello-snips-you-can-now-talk-to-snips-on-os-x
