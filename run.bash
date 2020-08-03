@@ -11,4 +11,4 @@ export
 echo -e "Config file\n--------------"
 cat /etc/pulse/client.conf
 echo -e "Play file\n--------------"
-exec mplayer /piano.wav
+exec mplayer -ao pulse /piano.wav
