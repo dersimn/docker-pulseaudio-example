@@ -19,7 +19,7 @@ PulseAudio still needs ALSA as backend, so install it first:
     aplay --list-devices
     aplay /piano.wav
 
-#### Install PulseAudio
+#### Install PulseAudio (system-wide)
 
     apt install pulseaudio pulseaudio-utils
 
@@ -62,6 +62,21 @@ Test it locally:
     apt install mplayer
     mplayer /piano.wav
 
+### On a macOS host system
+
+    brew install pulseaudio
+
+Add to `/usr/local/Cellar/pulseaudio/13.0_1/etc/pulse/default.pa`:
+
+```
+### Enable TCP and CLI
+load-module module-native-protocol-tcp port=4713 auth-anonymous=1
+```
+
+    pulseaudio --daemon
+    pacmd list-sinks
+    pacmd play-file /piano.wav 3
+    pactl set-default-sink 3
 
 ## Now use Docker
 
@@ -72,7 +87,7 @@ Linux:
     docker run -e "DOCKER_HOST=$(ip -4 addr show docker0 | grep -Po 'inet \K[\d.]+')" pulse
     docker run -e "DOCKER_HOST=<IP of the docker0 network interface>" pulse
 
-macOS:
+macOS (using *Docker for Mac*):
 
     docker run -e "DOCKER_HOST=host.docker.internal" pulse
 
